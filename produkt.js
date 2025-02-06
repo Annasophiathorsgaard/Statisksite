@@ -1,5 +1,9 @@
 const productContainer = document.querySelector(".product-container");
-const productId = 1535;
+
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const productId = urlParams.get("id")
+
 fetch(`https://kea-alt-del.dk/t7/api/products/${productId}`)
 .then((response) => response.json())
 .then((data) => {
@@ -11,8 +15,8 @@ productContainer.innerHTML = `
             src="https://kea-alt-del.dk/t7/images/webp/640/${data.id}.webp"
             alt="Beskrivelse af billede"
           />
+          <span class="saleLabel ${data.discount && "isOnSale"}">-${data.discount}%</span>
         </div>
-
         <div>
                 <h2>${data.productdisplayname}</h2>
         <p><strong>Categorie:</strong>${data.category}</p>

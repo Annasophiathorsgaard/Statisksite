@@ -5,17 +5,17 @@ fetch(`https://kea-alt-del.dk/t7/api/categories`)
 .then(showCategori);
 
 function showCategori(data){
-    console.log("min data er: ", data);
+    console.log("min data er:", data);
 
     const markup = data
     .map(
         (element) => 
             `<article>
-            <a href="produktliste.html">${element.category}</a>
+            <a href="produktliste.html?category=${element.category}">${element.category}</a>
             </article>`
 )
 .join("");
 
-console.log("min markup er ", markup);
+console.log("min markup er", markup);
 document.querySelector("ul").innerHTML = markup;
 }
